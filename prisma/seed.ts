@@ -13,6 +13,8 @@ async function main() {
   await prisma.lead.deleteMany();
   await prisma.customer.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.knowledgeDocument.deleteMany();
+  await prisma.integration.deleteMany();
   await prisma.tenant.deleteMany();
 
   const tenant = await prisma.tenant.create({
@@ -141,6 +143,112 @@ async function main() {
         status: "COMPLETED",
         scheduledAt: inHours(-72),
         amount: 210,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[1].id,
+        technicianId: tech2.id,
+        title: "Water Heater Flush",
+        serviceType: "Plumbing",
+        status: "COMPLETED",
+        scheduledAt: inHours(-120),
+        amount: 175,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[2].id,
+        technicianId: tech1.id,
+        title: "Outlet Replacement",
+        serviceType: "Electrical",
+        status: "COMPLETED",
+        scheduledAt: inHours(-168),
+        amount: 140,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[3].id,
+        technicianId: tech2.id,
+        title: "Hedge Trimming",
+        serviceType: "Landscaping",
+        status: "COMPLETED",
+        scheduledAt: inHours(-216),
+        amount: 190,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[0].id,
+        technicianId: tech1.id,
+        title: "Thermostat Install",
+        serviceType: "HVAC Install",
+        status: "COMPLETED",
+        scheduledAt: inHours(-288),
+        amount: 230,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[1].id,
+        technicianId: tech1.id,
+        title: "Drain Snaking",
+        serviceType: "Plumbing",
+        status: "CANCELLED",
+        scheduledAt: inHours(-48),
+        amount: 130,
+      },
+    }),
+    prisma.job.create({
+      data: {
+        tenantId: tenant.id,
+        customerId: customers[2].id,
+        technicianId: tech2.id,
+        title: "Fixture Upgrade",
+        serviceType: "Electrical",
+        status: "SCHEDULED",
+        scheduledAt: inHours(50),
+        amount: 220,
+      },
+    }),
+  ]);
+
+  const INTEGRATIONS: { key: string; name: string; description: string; category: string; connected: boolean }[] = [
+    { key: "salesforce", name: "Salesforce CRM", description: "Manage leads, accounts, and opportunities with seamless AI-powered automation", category: "CRM & Marketing", connected: true },
+    { key: "hubspot", name: "HubSpot", description: "Marketing, sales, and service tools unified into one integrated business platform", category: "CRM & Marketing", connected: false },
+    { key: "quickbooks", name: "QuickBooks Online", description: "Accounting, invoicing, and expense tracking for small and medium businesses", category: "Finance & Accounting", connected: true },
+    { key: "stripe", name: "Stripe Payments", description: "Secure payment processing with subscriptions, invoicing and reporting", category: "Finance & Accounting", connected: true },
+    { key: "shopify", name: "Shopify", description: "E-commerce platform to manage products, orders, customers, and online sales channels", category: "E-commerce", connected: false },
+    { key: "slack", name: "Slack", description: "Team communication and instant messaging integrated directly into workflows and alerts", category: "Communications", connected: false },
+    { key: "teams", name: "Microsoft Teams", description: "Collaboration, chat, and video conferencing with direct business process integration", category: "Communications", connected: false },
+    { key: "twilio", name: "Twilio", description: "Programmable messaging, voice, and notifications for customer engagement", category: "Communications", connected: true },
+    { key: "odoo", name: "Odoo ERP", description: "Enterprise resource planning covering sales, inventory, finance, and manufacturing", category: "ERP & Resource Management", connected: false },
+  ];
+  await Promise.all(
+    INTEGRATIONS.map((i) => prisma.integration.create({ data: { tenantId: tenant.id, ...i } }))
+  );
+
+  await Promise.all([
+    prisma.knowledgeDocument.create({
+      data: {
+        tenantId: tenant.id,
+        title: "Service Price List",
+        content:
+          "HVAC Repair: $150-$400. HVAC Install: $2500-$6000. Plumbing Repair: $120-$350. Electrical Inspection: $150. Cleaning (standard home): $180-$260. Landscaping (yard cleanup): $150-$300. Emergency calls add a $75 surcharge outside business hours (8am-6pm Mon-Sat).",
+      },
+    }),
+    prisma.knowledgeDocument.create({
+      data: {
+        tenantId: tenant.id,
+        title: "Service Area & Hours",
+        content:
+          "Cascade Home Services covers Tacoma, Seattle, Bellevue, and Renton, WA. Business hours are Monday-Saturday, 8:00 AM - 6:00 PM. Emergency HVAC and plumbing service is available 24/7 with a surcharge.",
       },
     }),
   ]);

@@ -77,21 +77,6 @@ export default async function SettingsPage() {
           ))}
         </div>
       </div>
-
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
-        <h2 className="mb-2 text-sm font-semibold text-gray-700">AI Agent Configuration</h2>
-        <p className="mb-3 text-xs text-gray-500">
-          Simplified demo of the per-tenant AI agent settings described in the platform spec.
-        </p>
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="rounded-xl bg-gray-50 px-4 py-2.5 text-gray-600">
-            Communication style: <span className="font-medium text-teal-600">Friendly</span>
-          </div>
-          <div className="rounded-xl bg-gray-50 px-4 py-2.5 text-gray-600">
-            Escalation threshold: <span className="font-medium text-teal-600">70% confidence</span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

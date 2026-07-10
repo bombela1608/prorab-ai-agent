@@ -44,6 +44,8 @@ model Tenant {
   name      String
   plan      String   @default("Professional")
   brandColor String  @default("#2563eb")
+  aiTone            String   @default("Friendly")
+  aiOperatingHours  String   @default("Always Active (24/7)")
   createdAt DateTime @default(now())
 
   users     User[]
@@ -51,6 +53,8 @@ model Tenant {
   customers Customer[]
   jobs      Job[]
   chatSessions ChatSession[]
+  knowledgeDocuments KnowledgeDocument[]
+  integrations       Integration[]
 }
 
 model User {
@@ -134,4 +138,27 @@ model ChatMessage {
   role          String
   content       String
   createdAt     DateTime    @default(now())
+}
+
+model KnowledgeDocument {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model Integration {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  key         String
+  name        String
+  description String
+  category    String
+  connected   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@unique([tenantId, key])
 }
