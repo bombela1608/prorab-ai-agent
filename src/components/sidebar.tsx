@@ -76,7 +76,7 @@ export function Sidebar({ tenantName }: { tenantName: string }) {
 
       <div className="p-3">
         <Link
-          href="/"
+          href="/demo"
           target="_blank"
           className="flex items-center gap-2.5 rounded-full px-3.5 py-2 text-xs font-semibold tracking-wide uppercase text-white/90 hover:bg-white/10"
         >

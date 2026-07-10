@@ -20,7 +20,7 @@ export default function LoginPage() {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/"
+            href="/demo"
             className="rounded-full bg-orange-500 px-5 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-orange-600"
           >
             View Site
