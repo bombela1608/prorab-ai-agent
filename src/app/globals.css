@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6f7;
+  --foreground: #1a2027;
+
+  --color-teal-50: #eaf7f8;
+  --color-teal-100: #cdeef0;
+  --color-teal-200: #a3e0e3;
+  --color-teal-300: #74ccd1;
+  --color-teal-400: #4fb9c0;
+  --color-teal-500: #37a8b0;
+  --color-teal-600: #2c8a91;
+  --color-teal-700: #246d73;
+  --color-teal-800: #1f575c;
+  --color-teal-900: #1a464a;
+
+  --color-orange-50: #fdf1e6;
+  --color-orange-100: #fbdfc0;
+  --color-orange-200: #f6c690;
+  --color-orange-300: #f0a75c;
+  --color-orange-400: #ea8f38;
+  --color-orange-500: #e07c22;
+  --color-orange-600: #c2661a;
+  --color-orange-700: #9c5216;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-poppins);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-teal-50: var(--color-teal-50);
+  --color-teal-100: var(--color-teal-100);
+  --color-teal-200: var(--color-teal-200);
+  --color-teal-300: var(--color-teal-300);
+  --color-teal-400: var(--color-teal-400);
+  --color-teal-500: var(--color-teal-500);
+  --color-teal-600: var(--color-teal-600);
+  --color-teal-700: var(--color-teal-700);
+  --color-teal-800: var(--color-teal-800);
+  --color-teal-900: var(--color-teal-900);
+
+  --color-orange-50: var(--color-orange-50);
+  --color-orange-100: var(--color-orange-100);
+  --color-orange-200: var(--color-orange-200);
+  --color-orange-300: var(--color-orange-300);
+  --color-orange-400: var(--color-orange-400);
+  --color-orange-500: var(--color-orange-500);
+  --color-orange-600: var(--color-orange-600);
+  --color-orange-700: var(--color-orange-700);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
