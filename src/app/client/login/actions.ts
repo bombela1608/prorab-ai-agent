@@ -3,12 +3,12 @@
 import { AuthError } from "next-auth";
 import { signIn } from "@/auth";
 
-export async function loginAction(_prevState: string | undefined, formData: FormData) {
+export async function clientLoginAction(_prevState: string | undefined, formData: FormData) {
   try {
-    await signIn("staff-credentials", {
+    await signIn("customer-credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
-      redirectTo: "/dashboard",
+      redirectTo: "/client/dashboard",
     });
   } catch (error) {
     if (error instanceof AuthError) {

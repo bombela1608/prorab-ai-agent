@@ -9,14 +9,16 @@ interface Message {
   content: string;
 }
 
-export function InternalAiChat() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content:
-        "Hi! I can answer questions about your leads, jobs, revenue, and team workload, or reference anything you've added to the Knowledge Base. Try asking \"how much revenue this month?\" or \"what's on the schedule today?\"",
-    },
-  ]);
+export function InternalAiChat({
+  endpoint = "/api/internal-chat",
+  welcomeMessage = "Hi! I can answer questions about your leads, jobs, revenue, and team workload, or reference anything you've added to the Knowledge Base. Try asking \"how much revenue this month?\" or \"what's on the schedule today?\"",
+  placeholder = "Ask about leads, jobs, revenue, or your team...",
+}: {
+  endpoint?: string;
+  welcomeMessage?: string;
+  placeholder?: string;
+}) {
+  const [messages, setMessages] = useState<Message[]>([{ role: "assistant", content: welcomeMessage }]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -34,7 +36,7 @@ export function InternalAiChat() {
     setSending(true);
 
     try {
-      const res = await fetch("/api/internal-chat", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
@@ -81,7 +83,7 @@ export function InternalAiChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder="Ask about leads, jobs, revenue, or your team..."
+          placeholder={placeholder}
           className="flex-1 rounded-full bg-gray-100 px-4 py-2.5 text-sm text-gray-800 outline-none focus:ring-2 focus:ring-teal-300"
         />
         <button

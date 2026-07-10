@@ -19,7 +19,7 @@ export default async function AppLayout({
       <div className="flex flex-1 flex-col overflow-hidden">
         <Topbar
           userName={session.user.name ?? "User"}
-          role={session.user.role}
+          role={session.user.role ?? "STAFF"}
           plan={tenant?.plan ?? "Professional"}
         />
         <main className="flex-1 overflow-y-auto p-8">{children}</main>

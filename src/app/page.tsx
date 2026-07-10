@@ -20,12 +20,20 @@ export default function Home() {
           </div>
           <span className="font-bold font-[family-name:var(--font-baloo)]">Cascade Home Services</span>
         </div>
-        <Link
-          href="/login"
-          className="rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600"
-        >
-          Staff Login
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/client/login"
+            className="rounded-full border border-gray-200 px-5 py-2.5 text-sm font-semibold text-gray-600 transition hover:border-gray-300"
+          >
+            Client Login
+          </Link>
+          <Link
+            href="/login"
+            className="rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600"
+          >
+            Staff Login
+          </Link>
+        </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-16">

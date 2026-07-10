@@ -59,7 +59,7 @@ async function main() {
 
   const customers = await Promise.all(
     [
-      { name: "Maria Gonzalez", email: "maria.g@example.com", phone: "555-0101", address: "412 Cedar St, Tacoma, WA" },
+      { name: "Maria Gonzalez", email: "maria.g@example.com", phone: "555-0101", address: "412 Cedar St, Tacoma, WA", passwordHash },
       { name: "David Kim", email: "david.kim@example.com", phone: "555-0102", address: "88 Alder Ave, Seattle, WA" },
       { name: "Priya Patel", email: "priya.p@example.com", phone: "555-0103", address: "230 Birch Rd, Bellevue, WA" },
       { name: "Tom Nguyen", email: "tom.n@example.com", phone: "555-0104", address: "17 Maple Ct, Renton, WA" },
@@ -257,6 +257,7 @@ async function main() {
   console.log("Tenant:", tenant.name);
   console.log("Login: admin@cascadehs.com / prorab123 (Admin)");
   console.log("Login: jordan@cascadehs.com / prorab123 (Technician)");
+  console.log("Client login: maria.g@example.com / prorab123");
 }
 
 main()

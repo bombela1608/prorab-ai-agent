@@ -71,17 +71,20 @@ model User {
 }
 
 model Customer {
-  id        String   @id @default(cuid())
-  tenantId  String
-  tenant    Tenant   @relation(fields: [tenantId], references: [id])
-  name      String
-  email     String?
-  phone     String?
-  address   String?
-  createdAt DateTime @default(now())
+  id           String   @id @default(cuid())
+  tenantId     String
+  tenant       Tenant   @relation(fields: [tenantId], references: [id])
+  name         String
+  email        String?
+  phone        String?
+  address      String?
+  passwordHash String?
+  createdAt    DateTime @default(now())
 
   jobs      Job[]
   leads     Lead[]
+
+  @@unique([tenantId, email])
 }
 
 model Lead {
