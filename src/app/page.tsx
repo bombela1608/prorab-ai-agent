@@ -274,8 +274,8 @@ export default function Home() {
           <p>© 2026 ProRab AI Agent. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/demo" className="hover:text-gray-600">Live Demo</Link>
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
+            <Link href="/privacy" className="hover:text-gray-600">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-gray-600">Terms of Use</Link>
           </div>
         </div>
       </footer>

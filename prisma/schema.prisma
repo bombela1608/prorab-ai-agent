@@ -165,3 +165,13 @@ model Integration {
 
   @@unique([tenantId, key])
 }
+
+model PasswordResetToken {
+  id          String   @id @default(cuid())
+  token       String   @unique
+  accountType String
+  accountId   String
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdAt   DateTime @default(now())
+}
