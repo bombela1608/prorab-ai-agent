@@ -45,3 +45,7 @@ next-env.d.ts
 # database
 /dev.db
 /dev.db-journal
+
+# agent skill installers (auto-added by vercel integration add)
+/.agents
+skills-lock.json
